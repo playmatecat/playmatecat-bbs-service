@@ -29,7 +29,7 @@ public class UserCpt {
 		
 		User tmpUser = new User();
 		user.setUsername("testTx");
-		userService.insertUser(tmpUser);
+//		userService.insertUser(tmpUser);
 		
 //		if(StringUtils.isEmpty("")) {
 //			throw new Exception("test tx error");
