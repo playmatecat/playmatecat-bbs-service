@@ -8,9 +8,9 @@
 		<artifactId>playmatecat-bbs-service</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>playmatecat-bbs-service-web</artifactId>
+	<artifactId>playmatecat-bbs-service-front</artifactId>
 	<packaging>war</packaging>
-	<name>playmatecat-bbs-service-web Maven Webapp</name>
+	<name>playmatecat-bbs-service-front Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 
 
@@ -124,5 +124,7 @@
 		</dependency>
 
 	</dependencies>
+
+
 
 </project>
