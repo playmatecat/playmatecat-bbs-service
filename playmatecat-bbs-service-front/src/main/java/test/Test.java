@@ -23,7 +23,16 @@ public class Test {
 		UtilsNioClient.init();
 		
 		for(int i = 0; i < 2; i++) {
-			RunThread rt = new RunThread();
+			RunThread rt = new RunThread(1);
+			rt.start();
+		}
+		
+		Thread.sleep(2000);
+		
+		System.out.println("=@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+		
+		for(int i = 0; i < 300; i++) {
+			RunThread rt = new RunThread(10);
 			rt.start();
 		}
 		
@@ -31,12 +40,18 @@ public class Test {
 	
 	
 	public static class RunThread extends Thread {
-
+		
+		private int count = 0;
+		
+		private RunThread(int count) {
+			this.count = count;
+		}
+		
 		@Override
 		public void run() {
 			NioTransferAdapter nta1;
 			long start = System.currentTimeMillis();
-			for(int i = 0;i < 1;i++) {
+			for(int i = 0;i < count;i++) {
 				nta1 = new NioTransferAdapter(String.valueOf(i), "{'content':'abc!!!!'}", Article.class);
 				UtilsNioClient.write(nta1);
 			}
