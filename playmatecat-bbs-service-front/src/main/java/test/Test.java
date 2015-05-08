@@ -30,11 +30,14 @@ public class Test {
 		Thread.sleep(2000);
 		
 		System.out.println("=@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-		
-		for(int i = 0; i < 300; i++) {
-			RunThread rt = new RunThread(10);
-			rt.start();
+		for(int j = 0; j < 10; j++) {
+			for(int i = 0; i < 100; i++) {
+				RunThread rt = new RunThread(1);
+				rt.start();
+			}
+			Thread.sleep(100);
 		}
+		
 		
 	}
 	
