@@ -20,6 +20,7 @@
         <property name="transactionSynchronization" value="1" />
     </bean>
 
+    <!-- 请注意子系统业务的事务处理bean必须是命名为txAdvice具体见@MethodExecuteRunnable有对这个名字进行反射 -->
     <tx:advice id="txAdvice" transaction-manager="transactionManager">
         <tx:attributes>
             <!-- read-only true,在方法中写入数据库的数据,这部分中数据对本方法不可见 -->
