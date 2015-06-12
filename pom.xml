@@ -8,7 +8,7 @@
 	<packaging>pom</packaging>
 
 	<modules>
-		<module>playmatecat-bbs-service-front</module>
+		<module>playmatecat-bbs-service-core</module>
 	</modules>
 
 	<profiles>
