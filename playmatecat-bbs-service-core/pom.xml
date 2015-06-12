@@ -10,7 +10,7 @@
 	</parent>
 	<artifactId>playmatecat-bbs-service-core</artifactId>
 	<packaging>war</packaging>
-	<name>playmatecat-bbs-service-front Maven Webapp</name>
+	<name>playmatecat-bbs-service-core</name>
 	<url>http://maven.apache.org</url>
 
 
