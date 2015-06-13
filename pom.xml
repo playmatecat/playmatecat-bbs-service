@@ -9,6 +9,7 @@
 
 	<modules>
 		<module>playmatecat-bbs-service-core</module>
+		<module>playmatecat-bbs-service-admin</module>
 	</modules>
 
 	<profiles>
