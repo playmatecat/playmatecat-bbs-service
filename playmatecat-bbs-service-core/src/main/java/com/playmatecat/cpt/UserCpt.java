@@ -33,9 +33,9 @@ public class UserCpt {
 ////		if(StringUtils.isEmpty("")) {
 ////			throw new Exception("test tx error");
 ////		}
-		System.out.println(art.getContent());
-		
-		return JSONValue.toJSONString(art);
+		//System.out.println(art.getContent());
+		throw new Exception("什么鬼");
+		//return JSONValue.toJSONString(art);
 	}
 	
 	

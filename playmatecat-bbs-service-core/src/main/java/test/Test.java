@@ -1,7 +1,11 @@
-package test;
-
-
-public class Test {
+//package test;
+//
+//import com.playmatecat.database.bbs.Article;
+//import com.playmatecat.mina.NioTransferAdapter;
+//import com.playmatecat.utils.mina.UtilsNioClient;
+//
+//
+//public class Test {
 //	public static void main(String[] args) throws Exception{
 //		
 ////		 long l = Runtime.getRuntime().totalMemory()/1024/1024;
@@ -17,7 +21,6 @@ public class Test {
 ////		long end = System.currentTimeMillis();
 ////		System.out.println("finish:" + (end -start) + " ms");
 //		
-//		UtilsNioClient.init();
 //		
 //		for(int i = 0; i < 2; i++) {
 //			RunThread rt = new RunThread(1);
@@ -27,8 +30,8 @@ public class Test {
 //		Thread.sleep(2000);
 //		
 //		System.out.println("=@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-//		for(int j = 0; j < 10; j++) {
-//			for(int i = 0; i < 100; i++) {
+//		for(int j = 0; j < 2; j++) {
+//			for(int i = 0; i < 2; i++) {
 //				RunThread rt = new RunThread(1);
 //				rt.start();
 //			}
@@ -60,4 +63,4 @@ public class Test {
 //		}
 //		
 //	}
-}
+//}

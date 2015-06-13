@@ -42,10 +42,13 @@
         </tx:attributes>
     </tx:advice>
 
+    <!-- 其实这段在service无效的 -->
     <aop:config>
+        <!-- <aop:pointcut id="pcServiceMethods"
+            expression="execution(* com.playmatecat..*..cpt..*.*(..))" /> -->
         <aop:pointcut id="pcServiceMethods"
-            expression="execution(* com.playmatecat..*..cpt..*.*(..))" />
-        <aop:advisor advice-ref="txAdvice" pointcut-ref="pcServiceMethods" />
+            expression="execution(* com.playmatecat.cpt..*.*(..))" />
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="pcServiceMethods" order="100"/>
     </aop:config>
     
 </beans>

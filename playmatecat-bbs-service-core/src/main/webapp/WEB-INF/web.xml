@@ -19,6 +19,17 @@
 		<param-name>spring.profiles.active</param-name>
 		<param-value>test</param-value>
 	</context-param>
+	<context-param>
+        <param-name>spring.profiles.active</param-name>
+        <param-value>test</param-value>
+    </context-param>
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <!-- 相关配置文件文件路径，可逗号隔开 -->
+        <param-value>
+            classpath*:config/spring/application*.xml
+        </param-value>
+    </context-param>
 	
 	<context-param>
         <param-name>log4jConfiguration</param-name>
@@ -35,8 +46,12 @@
     
     <!-- 解决自己(不是spring自管理的)启动的线程的内省get&set内存泄露问题,一定要配置在第一个listener,解决包括quartz插件泄露内存问题 -->
     <listener>
-		<listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
-	</listener>
+        <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener
+        </listener-class>
+    </listener>
     
     <!-- log4j2 listener-begin -->
     <listener>
