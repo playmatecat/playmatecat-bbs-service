@@ -82,5 +82,17 @@
 			<artifactId>playmatecat-commons</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		
+		<dependency>
+            <groupId>com.playmatecat</groupId>
+            <artifactId>playmatecat-domain-core-bbs</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.playmatecat</groupId>
+            <artifactId>playmatecat-bbs-service-admin</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
 	</dependencies>
 </project>
