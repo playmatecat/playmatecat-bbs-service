@@ -7,4 +7,6 @@ import com.playmatecat.domains.sysBBS.dto.RoleDTO;
 
 public interface RoleMapper {
     public List<RoleDTO> getRoles(Map<String, Object> params);
+    
+    public int getRolesCount(Map<String, Object> params);
 }

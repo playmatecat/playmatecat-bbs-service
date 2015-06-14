@@ -38,8 +38,10 @@ public class AuthorizationCpt {
         
         
         List<RoleDTO> roleList = roleService.getRoles(authorizationVO.getRoleDTO());
+        //数据总数
+        int total = roleService.getRolesCount(authorizationVO.getRoleDTO());
         page.setList(roleList);
-        
+        page.setTotal(total);
         
         rtnVO.setRolePage(page);
         return rtnVO;

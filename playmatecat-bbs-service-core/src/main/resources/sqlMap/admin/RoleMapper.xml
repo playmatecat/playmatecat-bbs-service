@@ -4,14 +4,44 @@
 
 <mapper namespace="com.playmatecat.bbs.admin.mapper.RoleMapper">
 
-    <resultMap type="com.playmatecat.domains.sysBBS.dto.RoleDTO" id="roleMapper">
-        <result property="id" column="id"/>
-        <!-- <association property="" select="" column="" javaType=""/> -->
-    </resultMap>
+	<resultMap type="com.playmatecat.domains.sysBBS.dto.RoleDTO"
+		id="roleMapper">
+		<result property="id" column="id" />
+		<!-- <association property="" select="" column="" javaType=""/> -->
+	</resultMap>
 
-    <select id="getRoles" parameterType="Map" resultMap="roleMapper">
-        SELECT id as id
-        FROM
+	<select id="getRoles" parameterType="Map" resultMap="roleMapper">
+		SELECT id as id
+		FROM
         <![CDATA[${subSysDatabase}.role]]>
-    </select>
+		<where>
+			<if test="isDeleted == true ">
+				AND role.is_deleted = 1
+			</if>
+			<if test="isDeleted ==  false ">
+				AND role.is_deleted = 0
+			</if>
+
+			<if test="offset != null and pageSize != null">
+				limit #{offset}, #{pageSize}
+			</if>
+		</where>
+
+	</select>
+
+
+	<select id="getRolesCount" parameterType="Map" resultType="Integer">
+		SELECT count(id)
+		FROM
+        <![CDATA[${subSysDatabase}.role]]>
+		<where>
+			<if test="isDeleted == true ">
+				AND role.is_deleted = 1
+			</if>
+			<if test="isDeleted ==  false ">
+				AND role.is_deleted = 0
+			</if>
+		</where>
+	</select>
+
 </mapper>
