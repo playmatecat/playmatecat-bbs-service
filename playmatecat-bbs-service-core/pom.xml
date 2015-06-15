@@ -88,7 +88,14 @@
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		
-
+		        
+        <dependency>
+            <groupId>com.playmatecat</groupId>
+            <artifactId>playmatecat-bbs-service-admin</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+		
+		
 		<!-- servlet-api,web项目必须 -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
