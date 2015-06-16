@@ -10,18 +10,28 @@
 		<!-- <association property="" select="" column="" javaType=""/> -->
 	</resultMap>
 
+	<sql id="select_header">
+		id, name, code, description, is_deleted
+	</sql>
+
 	<select id="getRoles" parameterType="Map" resultMap="roleMapper">
-		SELECT id as id
+		SELECT 
+		<include refid="select_header" />
 		FROM
         <![CDATA[${subSysDatabase}.role]]>
 		<where>
-			<if test="isDeleted == true ">
-				AND role.is_deleted = 1
+			<if test="id != null">
+				AND role.id = #{id}
 			</if>
-			<if test="isDeleted ==  false ">
-				AND role.is_deleted = 0
+			<if test="code != null">
+				AND role.code like CONCAT('%', #{code}, '%')  
 			</if>
-
+			<if test="description != null">
+				AND role.description like CONCAT('%', #{description}, '%')  
+			</if>
+			<if test="isDeleted != null ">
+				AND role.is_deleted = #{isDeleted}
+			</if>
 			<if test="offset != null and pageSize != null">
 				limit #{offset}, #{pageSize}
 			</if>
@@ -31,15 +41,21 @@
 
 
 	<select id="getRolesCount" parameterType="Map" resultType="Integer">
-		SELECT count(id)
+		SELECT count(1)
 		FROM
         <![CDATA[${subSysDatabase}.role]]>
 		<where>
-			<if test="isDeleted == true ">
-				AND role.is_deleted = 1
+			<if test="id != null">
+				AND role.id = #{id}
 			</if>
-			<if test="isDeleted ==  false ">
-				AND role.is_deleted = 0
+			<if test="code != null">
+				AND role.code like CONCAT('%', #{code}, '%')  
+			</if>
+			<if test="description != null">
+				AND role.description like CONCAT('%', #{description}, '%')  
+			</if>
+			<if test="isDeleted != null ">
+				AND role.is_deleted = #{isDeleted}
 			</if>
 		</where>
 	</select>

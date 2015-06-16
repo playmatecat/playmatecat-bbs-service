@@ -25,6 +25,7 @@ public class AuthorizationCpt {
     /**
      * 获得角色分页列表
      * 参数表：
+     * [authorizationVO.roleDTO.isDeleted]
      * <authorizationVO.roleDTO.pageSize>
      * <authorizationVO.roleDTO.pageNo>
      * @param authorizationVO
