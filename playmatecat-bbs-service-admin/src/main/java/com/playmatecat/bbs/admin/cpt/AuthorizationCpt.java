@@ -9,6 +9,7 @@ import com.playmatecat.bbs.admin.service.RoleService;
 import com.playmatecat.bbs.bbsApp.admin.vo.AuthorizationVO;
 import com.playmatecat.commons.structure.Pagination;
 import com.playmatecat.domains.sysBBS.dto.RoleDTO;
+import com.playmatecat.utils.dataformat.UtilsPagination;
 
 /**
  * 授权相关组件
@@ -33,18 +34,25 @@ public class AuthorizationCpt {
      */
     public AuthorizationVO getRolesPagination(AuthorizationVO authorizationVO) {
         AuthorizationVO rtnVO = new AuthorizationVO();
-        int pageNo = authorizationVO.getRoleDTO().getPageNo();
-        int pageSize = authorizationVO.getRoleDTO().getPageSize();
-        Pagination<RoleDTO> page = new Pagination<>(pageNo,pageSize);
         
+        //获得/初始化角色分页参数
+        Pagination<RoleDTO> rolePage = UtilsPagination.getPage(authorizationVO.getRolePage());
         
-        List<RoleDTO> roleList = roleService.getRoles(authorizationVO.getRoleDTO());
+        //获得/初始化角色传参
+        RoleDTO roleDTO = authorizationVO.getRoleDTO();
+        if(roleDTO == null) {
+            roleDTO = new RoleDTO();
+            roleDTO.setIsDeleted(false);
+        }
+        
+        //获得角色列表数据
+        List<RoleDTO> roleList = roleService.getRoles(roleDTO, rolePage);
         //数据总数
-        int total = roleService.getRolesCount(authorizationVO.getRoleDTO());
-        page.setList(roleList);
-        page.setTotal(total);
+        int total = roleService.getRolesCount(roleDTO);
+        rolePage.setList(roleList);
+        rolePage.setTotal(total);
         
-        rtnVO.setRolePage(page);
+        rtnVO.setRolePage(rolePage);
         return rtnVO;
     }
 

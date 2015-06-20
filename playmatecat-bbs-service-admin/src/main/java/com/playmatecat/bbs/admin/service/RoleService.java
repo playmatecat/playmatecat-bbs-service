@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.playmatecat.bbs.admin.mapper.RoleMapper;
 import com.playmatecat.commons.constants.PropertiesKeyConstants;
+import com.playmatecat.commons.structure.Pagination;
 import com.playmatecat.domains.sysBBS.dto.RoleDTO;
 import com.playmatecat.utils.dataformat.UtilsPagination;
 import com.playmatecat.utils.spring.UtilsProperties;
@@ -22,12 +23,13 @@ public class RoleService {
     /**
      * 获得角色列表
      * @param roleDTO
+     * @param page 分页信息,页号,页大小
      * @return
      */
-    public List<RoleDTO> getRoles(RoleDTO roleDTO) {
+    public List<RoleDTO> getRoles(RoleDTO roleDTO,Pagination<RoleDTO> page) {
         Map<String, Object> params = new HashMap<String, Object>();
-        int pageNo = roleDTO.getPageNo();
-        int pageSize = roleDTO.getPageSize();
+        int pageNo = page.getPageNo();
+        int pageSize = page.getPageSize();
         
         params.put("offset", UtilsPagination.getOffset(pageNo, pageSize));
         params.put("pageSize", pageSize);
