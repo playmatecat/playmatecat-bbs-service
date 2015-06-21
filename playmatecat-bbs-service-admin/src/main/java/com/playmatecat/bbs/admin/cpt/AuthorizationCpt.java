@@ -2,6 +2,7 @@ package com.playmatecat.bbs.admin.cpt;
 
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -39,12 +40,14 @@ public class AuthorizationCpt {
         Pagination<RoleDTO> rolePage = UtilsPagination.getPage(authorizationVO.getRolePage());
         
         //获得/初始化角色传参
-        RoleDTO roleDTO = authorizationVO.getRoleDTO();
-        if(roleDTO == null) {
-            roleDTO = new RoleDTO();
-            roleDTO.setIsDeleted(false);
-        }
+        RoleDTO roleDTO = new RoleDTO();
+        RoleDTO roleSrcDTO = authorizationVO.getRoleDTO();
+        roleSrcDTO = roleSrcDTO == null ? new RoleDTO() : roleSrcDTO;
         
+        //设定查询未删除的记
+        roleSrcDTO.setIsDeleted(false);
+        BeanUtils.copyProperties(roleSrcDTO, roleDTO, new String[]{"id"});
+
         //获得角色列表数据
         List<RoleDTO> roleList = roleService.getRoles(roleDTO, rolePage);
         //数据总数

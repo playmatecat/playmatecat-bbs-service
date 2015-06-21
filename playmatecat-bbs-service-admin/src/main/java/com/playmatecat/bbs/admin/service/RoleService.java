@@ -33,8 +33,9 @@ public class RoleService {
         
         params.put("offset", UtilsPagination.getOffset(pageNo, pageSize));
         params.put("pageSize", pageSize);
-        params.put("isDeleted", roleDTO.getIsDeleted());
         
+        params.put("roleDTO", roleDTO);
+
         //指定子系统库
         String subSysDatabase = UtilsProperties.getProp(PropertiesKeyConstants.CAS_SUBSYS_SYS_DATABASE);
         params.put("subSysDatabase", subSysDatabase);
@@ -49,7 +50,8 @@ public class RoleService {
      */
     public int getRolesCount(RoleDTO roleDTO) {
         Map<String, Object> params = new HashMap<String, Object>();
-        params.put("isDeleted", roleDTO.getIsDeleted());
+        
+        params.put("roleDTO", roleDTO);
         
         //指定子系统库
         String subSysDatabase = UtilsProperties.getProp(PropertiesKeyConstants.CAS_SUBSYS_SYS_DATABASE);
