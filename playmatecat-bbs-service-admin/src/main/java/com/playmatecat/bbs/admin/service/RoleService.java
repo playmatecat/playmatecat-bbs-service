@@ -59,4 +59,38 @@ public class RoleService {
         
         return roleMapper.getRolesCount(params);
     }
+    
+    /**
+     * 获得单个角色信息
+     * @param roleDTO
+     * @return
+     */
+    public RoleDTO getRole(RoleDTO roleDTO) {
+        Map<String, Object> params = new HashMap<String, Object>();
+        
+        params.put("roleDTO", roleDTO);
+        
+        //指定子系统库
+        String subSysDatabase = UtilsProperties.getProp(PropertiesKeyConstants.CAS_SUBSYS_SYS_DATABASE);
+        params.put("subSysDatabase", subSysDatabase);
+        
+        return roleMapper.getRole(params);
+    }
+    
+    /**
+     * 添加单个角色信息
+     * @param roleDTO
+     * @return
+     */
+    public int addRole(RoleDTO roleDTO) {
+        Map<String, Object> params = new HashMap<String, Object>();
+        
+        params.put("roleDTO", roleDTO);
+        
+        //指定子系统库
+        String subSysDatabase = UtilsProperties.getProp(PropertiesKeyConstants.CAS_SUBSYS_SYS_DATABASE);
+        params.put("subSysDatabase", subSysDatabase);
+        
+        return roleMapper.addRole(params);
+    }
 }

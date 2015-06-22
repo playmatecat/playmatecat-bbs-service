@@ -13,6 +13,7 @@
 	<sql id="select_header">
 		id, name, code, description, is_deleted
 	</sql>
+    
 
 	<select id="getRoles" parameterType="Map" resultMap="roleMapper">
 		SELECT 
@@ -21,7 +22,7 @@
         <![CDATA[${subSysDatabase}.role]]>
 		<where>
 			<if test="roleDTO.id != null">
-				AND role.id = #{roleDTO.id.id}
+				AND role.id = #{roleDTO.id}
 			</if>
 			<if test="roleDTO.name != null and roleDTO.name != '' ">
                 AND role.name like CONCAT("%", #{roleDTO.name}, "%")  
@@ -47,7 +48,7 @@
         <![CDATA[${subSysDatabase}.role]]>
 		<where>
 			<if test="roleDTO.id != null">
-                AND role.id = #{roleDTO.id.id}
+                AND role.id = #{roleDTO.id}
             </if>
             <if test="roleDTO.name != null and roleDTO.name != '' ">
                 AND role.name like CONCAT("%", #{roleDTO.name}, "%")  
@@ -63,5 +64,37 @@
             </if>
 		</where>
 	</select>
+    
+    <select id="getRole" parameterType="Map" resultMap="roleMapper">
+        SELECT 
+        <include refid="select_header" />
+        FROM
+        <![CDATA[${subSysDatabase}.role]]>
+        <where>
+            <if test="roleDTO.id != null">
+                AND role.id = #{roleDTO.id}
+            </if>
+            <if test="roleDTO.name != null and roleDTO.name != '' ">
+                AND role.name like CONCAT("%", #{roleDTO.name}, "%")  
+            </if>
+            <if test="roleDTO.code != null and roleDTO.code != '' ">
+                AND role.code like CONCAT("%", #{roleDTO.code}, "%")  
+            </if>
+            <if test="roleDTO.description != null and roleDTO.description != '' ">
+                AND role.description like CONCAT("%", #{roleDTO.description}, "%")  
+            </if>
+            <if test="roleDTO.isDeleted != null ">
+                AND role.is_deleted = #{roleDTO.isDeleted}
+            </if>
+        </where>
+    </select>
 
+
+    <insert id="addRole">
+        INSERT INTO
+        <![CDATA[${subSysDatabase}.role]]>
+        (name, code, description)
+        VALUES
+        (#{roleDTO.name},#{roleDTO.code},#{roleDTO.description})
+    </insert>
 </mapper>

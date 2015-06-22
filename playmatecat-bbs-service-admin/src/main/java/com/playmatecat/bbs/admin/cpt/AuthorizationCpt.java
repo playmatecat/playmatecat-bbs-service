@@ -34,6 +34,7 @@ public class AuthorizationCpt {
      * @return
      */
     public AuthorizationVO getRolesPagination(AuthorizationVO authorizationVO) {
+        
         AuthorizationVO rtnVO = new AuthorizationVO();
         
         //获得/初始化角色分页参数
@@ -58,5 +59,49 @@ public class AuthorizationCpt {
         rtnVO.setRolePage(rolePage);
         return rtnVO;
     }
-
+    
+    /**
+     * 获得单个角色信息
+     * @param authorizationVO
+     * @return
+     */
+    public AuthorizationVO getRole(AuthorizationVO authorizationVO) {
+        
+        AuthorizationVO rtnVO = new AuthorizationVO();
+        
+        RoleDTO roleDTO = new RoleDTO();
+        RoleDTO roleSrcDTO = authorizationVO.getRoleDTO();
+        roleSrcDTO = roleSrcDTO == null ? new RoleDTO() : roleSrcDTO;
+        
+        //设定查询未删除的记
+        roleSrcDTO.setIsDeleted(false);
+        BeanUtils.copyProperties(roleSrcDTO, roleDTO);
+        
+        rtnVO.setRoleDTO(roleService.getRole(roleDTO));
+        
+        return rtnVO;
+    }
+    
+    /**
+     * 添加一个角色信息
+     * @param authorizationVO
+     * @return
+     */
+    public AuthorizationVO addRole(AuthorizationVO authorizationVO) throws Exception{
+        AuthorizationVO rtnVO = new AuthorizationVO();
+        
+        RoleDTO roleDTO = new RoleDTO();
+        RoleDTO roleSrcDTO = authorizationVO.getRoleDTO();
+        roleSrcDTO = roleSrcDTO == null ? new RoleDTO() : roleSrcDTO;
+        
+        BeanUtils.copyProperties(roleSrcDTO, roleDTO);
+        
+        int rtn = roleService.addRole(roleDTO);
+        
+        if(rtn == 0) {
+            throw new Exception("写入角色信息失败");
+        }
+        
+        return rtnVO;
+    }
 }

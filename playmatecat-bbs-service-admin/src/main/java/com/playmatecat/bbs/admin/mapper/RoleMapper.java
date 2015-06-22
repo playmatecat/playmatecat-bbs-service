@@ -9,4 +9,8 @@ public interface RoleMapper {
     public List<RoleDTO> getRoles(Map<String, Object> params);
     
     public int getRolesCount(Map<String, Object> params);
+    
+    public RoleDTO getRole(Map<String, Object> params);
+    
+    public int addRole(Map<String, Object> params); 
 }
